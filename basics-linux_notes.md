@@ -1,6 +1,15 @@
 # Intro
 - This note was created to better navigate in Linux, and accomplish overTheWire CTF challenges.
 
+## Reference
+
+- [List of Commands](#list-of-commands)
+
+- [Encryption Specials](#encryption-specials)
+    - [Caesar Cipher](#caesar-cipher)
+
+<!-- List pf Commands -->
+
 ## List of commands: 
 
 `whatis "command“`
@@ -250,7 +259,7 @@ ON 'table1_name'+".'column_name'" = 'table2_name'+."'column_name'";
 
 
 ```SELECT "column_name"
-ROM "table1_name" LEFT JOIN "table2_name" 
+FROM "table1_name" LEFT JOIN "table2_name" 
 ON 'table1_name'+".'column_name'" = 'table2_name'+."'column_name'";
 ```
 - LEFT JOIN returns all the records of the first table, but only returns rows of the second table that match on a specified column. 
@@ -281,5 +290,41 @@ ON 'table1_name'+".'column_name'" = 'table2_name'+."'column_name'";
 - Returns a single number that represents the number of records returned from a query;
 
 `SELECT SUM("numerical_data")`
+- Returns a single number that represents the sum of the numerical data in a column;
+
+## Encryption Specials
+
+
+## Caesar Cipher
+
+
+```
+tr "order_of_alphabeta" "expected_order_of_alphabeta"
+```
+- Translates the "order_of_alphabeta" to the "expected_order_of_alphabeta"
+
+### Examples
+
+**_Encrytion_**
+
+__INPUT:__
+`echo 'Hello World' | tr "a-zA-Z" "b-zaB-ZA"`
+-  Print(`echo`) "Hello World" by translating(`tr`) it from the order of (`a-zA-Z`) becomes (`b-zaB-ZA`).
+- In other word, **if the original spot for letter A has the content of A, now its content became B**, because the first letter of expected alphabeta is B, and the **last letter of the expected alphabeta is A because it's from B to Z then A (B-ZA)**.
+
+__OUTPUT:__
+`Ifmmp Xpsme`
+- Every letter in `Hello World` moves 1 place forward outputs `Ifmmp Xpsme`.
+
+**_Decrytion_**
+
+__INPUT:__
+`echo 'Ifmmp Xpsme' | tr  "b-zaB-ZA" "a-zA-Z"`
+-  Print(`echo`) "Ifmmp Xpsme" by translating(`tr`) it from the order of (`b-zaB-ZA`) to (`a-zA-Z`).
+- In other word, **if the original spot for letter A has the content of B, now its content became A**, because the first letter of expected alphabeta is A, and the **last letter of the expected alphabeta is Z because it's from A-Z (A-Z) now**.
+
+__OUTPUT:__
+`Hello World`
+- Every letter in `Ifmmp Xpsme` moves 1 place backward outputs `Hello World`.
 - Returns a single number that represents the sum of the numerical data in a column;
 
